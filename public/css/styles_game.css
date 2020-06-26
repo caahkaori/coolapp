@@ -1,0 +1,26 @@
+.container, .container-fluid {
+  text-align: center;
+
+}
+
+.deck{
+  width: 500px;
+  height: 460px;
+  padding: 2rem;
+
+}
+
+.card{
+
+    padding: 5rem;
+}
+
+.img1{
+
+  width: 1000px;
+}
+
+.pressed {
+  box-shadow: 0 3px 4px 0 #DBEDF3;
+  opacity: 5.0;
+}

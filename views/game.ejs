@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>The Voting Game</title>
+  <link rel="stylesheet" href="/css/styles_game.css">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
+</head>
+
+<body>
+
+
+  <% let randomNumber = Math.floor(Math.random() * 7 + 1);   %>
+  <% let cards = "card" + randomNumber; %>
+
+
+
+
+  <div class=container-fluid>
+
+    <div class=row>
+      <div class=col-12>
+        <img class="img1" src="/images/thevotinggame.png">
+        <h1 id="winner">Which one of you will get most vote?</h1>
+
+      <% players.forEach(function(player){%>
+          <h2> <%=player.name%> </h2>
+          <form action="/game" method="post">
+            <button id="clickMe" class="btn btn-primary" name="clickMe" type="submit" value="<%=player.name%>">Click to vote for me</button>
+            <p> Vote: <%=votes%> </p>
+          </form>
+
+
+        <%  })%>
+      </div>
+
+
+
+
+      <div class=col-lg-6 col-md-12 col-sm-12>
+        <img id="deck" name="deck" class="deck" src="/images/card-deck.jpg">
+
+
+      </div>
+      <div class=col-6 col-md-12 col-sm-12>
+        <img class="card" src="images/<%=cards%>.png">
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript"</script>
+
+
+</body>
+
+
+
+</html>

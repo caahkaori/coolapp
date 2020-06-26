@@ -1,0 +1,160 @@
+#title {}
+
+#features {
+  padding: 1% 0;
+}
+
+#testimonials {
+  padding: 3% 8%;
+  text-align: center;
+  background-color: #00CED1;
+}
+
+#cta {
+  padding: 3% 8%;
+  text-align: center;
+}
+
+h1 {
+  font-family: 'Montserrat';
+  font-size: 3rem;
+  font-weight: 1.5;
+  margin-bottom: 1rem;
+  color: #F8F8FF;
+}
+
+h2 {
+  font-family: 'Josefin Sans';
+  font-size: 2rem;
+  color: #000000;
+}
+
+h3 {
+  font-family: 'Montserrat';
+  font-size: 1.5rem;
+  color: #000000;
+}
+
+p {
+  font-family: 'Josefin Sans';
+  font-size: 1rem;
+  color: #000000;
+}
+
+.first {
+  padding: 3% 8%;
+  background-color: #c4bcef;
+}
+
+.third {
+
+  padding: 5% 10%;
+}
+
+.fifth{
+
+  padding: 10% 20%;
+    background-color: #FF6347;
+}
+
+.feature-box {
+  text-align: center;
+  padding: 1%;
+}
+
+.fab {
+  margin-bottom: 2.5rem;
+}
+
+.fas {
+  margin-bottom: 2.5rem;
+}
+
+
+
+.navbar {
+  padding: 0 0 2.5rem;
+  color: #F8F8FF;
+}
+
+.navbar-brand {
+  font-family: 'Josefin Sans';
+  font-size: 3rem;
+  color: #F8F8FF;
+}
+
+.nav-link {
+  font-family: 'Josefin Sans';
+  font-size: 1rem;
+  color: #F8F8FF;
+}
+
+.nav-item {
+  padding: 0 25px;
+}
+
+.nav-link {
+  font-size: 1.5rem;
+}
+
+.testimonials {
+  border-radius: 50%;
+  width: 10%;
+}
+
+em {
+  font-family: 'Montserrat';
+  font-size: 1rem;
+  padding: 1rem;
+}
+
+/* Make the image responsive */
+.facetime {
+  width: 100%;
+  height: auto;
+}
+
+.click-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  background-color: #000000;
+  color: #F8F8FF;
+  font-size: 16px;
+  padding: 12px 24px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.end-button {
+  margin-top: 2rem;
+  background-color: #000000;
+  color: #F8F8FF;
+  border-color: #000000;
+}
+
+
+.carousel-item {
+  padding: 5% 10%;
+}
+
+#call-to-action h1{
+  text-align: center;
+  padding: 10% 20%;
+  color: #FF1493;
+}
+
+.media{
+
+  padding: 10% 2% 2%;
+  text-align: center;
+  margin-left: 10%;
+}
+
+.copyright{
+
+  text-align: center;
+}
