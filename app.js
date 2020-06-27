@@ -10,14 +10,16 @@ const mongoose = require("mongoose");
 
 const app = express();
 
-mongoose.connect("mongodb://localhost:27017/todolistDB", {
+mongoose.connect("mongodb://localhost:27017/votes", {
   useNewUrlParser: true
 });
 
+const votesSchema = {
+  name: String,
+  votes: Number
+};
 
-let players = [];
-let votes = [0];
-
+const Vote = mongoose.model("Vote", votesSchema);
 
 
 
@@ -41,18 +43,30 @@ app.get("/enter", function(req, res){
 
 });
 app.get("/game", function(req, res){
-  res.render("game", {players: players, votes: votes});
+
+  Vote.find({}, function(err, foundNames){
+   res.render("game", {players: foundNames});
+
+ });
+
+
 
 });
 
 app.post("/enter", function(req, res) {
 
-  const player = {
-    name: req.body.player
-  }
+  const playerName = req.body.player;
+
+  const vote = new Vote({
+    name: playerName,
+    votes: 0
+  });
+
+  vote.save()
 
 
-  players.push(player);
+
+
 
 
   // let post = [];
@@ -69,21 +83,20 @@ app.post("/enter", function(req, res) {
 app.post("/game", function(req, res) {
 
 
-  const clicks = {
-    clicks: req.body.clickMe
-  }
+  const clicks =  req.body.clickMe
+  Vote.findOneAndUpdate({name: clicks}, {$inc:{votes: 1 }}, function(err){
+    if (err) {
+        console.log("Something wrong when updating data!");
+  console.log(err);
 
+}else{
+  console.log("Sucess");
+}
+      res.redirect("/game");
+    });
 
-  votes++;
+  });
 
-
-
-
-
-
-
-  res.redirect("/game");
-});
 
 
 // if (button.addEventListener("click", function() {
