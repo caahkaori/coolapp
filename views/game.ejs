@@ -33,7 +33,7 @@
       <% players.forEach(function(player){%>
           <h2> <%=player.name%> </h2>
           <form action="/game" method="post">
-            <button id="clickMe" class="btn btn-primary" name="clickMe" type="submit" value="<%=player.name%>">Click to vote for me</button>
+            <button id="clickMe" class="btn btn-primary" name="clickMe" type="submit" value="<%=player._id%>">Click to vote for me</button>
             <p> Vote:<%=player.votes%> </p>
           </form>
 

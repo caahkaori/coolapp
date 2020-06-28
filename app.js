@@ -48,10 +48,28 @@ app.get("/game", function(req, res){
    res.render("game", {players: foundNames});
 
  });
-
-
-
 });
+
+
+ app.get("/results", function(req, res){
+
+   Vote
+      .find({})
+      .sort({"votes" : -1})
+      // .limit(1)
+      .exec(function(err, foundVotes){
+
+     if(err){
+       console.log(err);
+     }else{
+
+          res.render("results", {players: foundVotes, votes: foundVotes});
+
+     }
+
+   });
+
+ });
 
 app.post("/enter", function(req, res) {
 
@@ -84,18 +102,27 @@ app.post("/game", function(req, res) {
 
 
   const clicks =  req.body.clickMe
-  Vote.findOneAndUpdate({name: clicks}, {$inc:{votes: 1 }}, function(err){
+  Vote.findOneAndUpdate({_id: clicks}, {$inc:{votes: 1 }}, function(err){
     if (err) {
-        console.log("Something wrong when updating data!");
-  console.log(err);
+  console.log("Something wrong when updating data!");
+  console.log(clicks);
 
 }else{
   console.log("Sucess");
 }
-      res.redirect("/game");
+      res.redirect("/results");
     });
 
-  });
+        });
+
+app.post("/results", function(req, res){
+
+  Vote.updateMany({},{votes:0}, function(err, foundList){
+    if(!err){
+      res.redirect("/game");
+}
+});
+});
 
 
 
