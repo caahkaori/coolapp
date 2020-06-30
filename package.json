@@ -12,6 +12,9 @@
   },
   "author": "",
   "license": "ISC",
+  "engine": {
+    "node": "12.18.0"
+  },
   "bugs": {
     "url": "https://github.com/londonappbrewery/TinDog-Start/issues"
   },
@@ -23,6 +26,7 @@
     "https": "^1.0.0",
     "install": "^0.13.0",
     "mongoose": "^5.9.20",
-    "request": "^2.88.2"
+    "request": "^2.88.2",
+    "socket.io": "^2.3.0"
   }
 }

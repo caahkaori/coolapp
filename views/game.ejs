@@ -1,4 +1,7 @@
+
 <!DOCTYPE html>
+<%- include("partials/header") %>
+
 <html lang="en" dir="ltr">
 
 <head>
@@ -30,8 +33,11 @@
         <img class="img1" src="/images/thevotinggame.png">
         <h1 id="winner">Which one of you will get most vote?</h1>
 
+        <h2> <%=players._id%> </h2>
+
       <% players.forEach(function(player){%>
           <h2> <%=player.name%> </h2>
+
           <form action="/game" method="post">
             <button id="clickMe" class="btn btn-primary" name="clickMe" type="submit" value="<%=player._id%>">Click to vote for me</button>
             <p> Vote:<%=player.votes%> </p>
@@ -61,5 +67,6 @@
 </body>
 
 
+<%- include("partials/footer") %>
 
 </html>

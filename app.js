@@ -6,20 +6,28 @@ const bodyParser = require("body-parser");
 const https = require("https");
 const ejs = require("ejs");
 const mongoose = require("mongoose");
+const http = require('http').createServer(express);
+const io = require('socket.io')(http);
 
 
 const app = express();
 
-mongoose.connect("mongodb://localhost:27017/votes", {
-  useNewUrlParser: true
-});
+mongoose.connect("mongodb+srv://admin_caroline:supernatural123@cluster0-qqvh0.mongodb.net/votes",{ useNewUrlParser: true });
 
 const votesSchema = {
   name: String,
-  votes: Number
+  votes: 0,
 };
 
 const Vote = mongoose.model("Vote", votesSchema);
+
+const sessionSchema = {
+  name: votesSchema,
+  votes: votesSchema,
+}
+
+
+const Session = mongoose.model("Session", votesSchema);
 
 
 
@@ -42,6 +50,11 @@ app.get("/enter", function(req, res){
   res.render("enter");
 
 });
+app.get("/host", function(req, res){
+  res.render("host");
+
+});
+
 app.get("/game", function(req, res){
 
   Vote.find({}, function(err, foundNames){
@@ -74,29 +87,71 @@ app.get("/game", function(req, res){
 app.post("/enter", function(req, res) {
 
   const playerName = req.body.player;
+  const sessionID = req.body.session;
+
+  Session.findOne({_id: sessionID}, function(err, foundSessions){
+
+    if(!err){
+
+      if(!foundSessions){
+        res.redirect("/enter");
+
+      }else{
+
+        Session.findOneAndUpdate({_id:sessionID}, {name:playerName}, function(err, foundPlayer){
+
+          if (err) {
+        console.log("Something wrong when updating data!");
+        console.log(foundPlayer);
+      }else{
+        console.log("Sucess");
+        }
+        res.redirect("/game/" + sessionID)
+
+      })
+
+
+
+
+    // const vote = new Vote({
+    //   name: playerName,
+    //   votes: 0
+    // });
+    //
+    // vote.save()
+//
+//   res.redirect("/game");
+
+
+};
+}
+})
+});
+
+app.post("/host", function(req, res){
+
+  const partyName = req.body.partyName;
+  const playerName = req.body.playerName;
 
   const vote = new Vote({
     name: playerName,
     votes: 0
   });
 
+
+    const session = new Session({
+      name: playerName,
+      votes: 0
+    });
+
+
   vote.save()
-
-
-
-
-
-
-  // let post = [];
-  //
-  // let title = req.body.titleBox;
-  // let body = req.body.bodyPost;
-  //
-  // post.push(title);
-  // post.push(body);
+  session.save()
 
   res.redirect("/game");
-});
+
+
+})
 
 app.post("/game", function(req, res) {
 
@@ -125,81 +180,32 @@ app.post("/results", function(req, res){
 });
 
 
+app.get('/game/:sessionID', function(req, res) {
 
-// if (button.addEventListener("click", function() {
-//   var randomNumber1 = Math.floor(Math.random() * 2 + 1)
-//
-//   var randomCardImage = "card" + randomNumber1 + ".png";
-//   var randomImageSource = "images/" + randomCardImage;
-//   deck.setAttribute("src", randomImageSource);
-//
-//   var sound = new Audio ("sounds/mmm-3.wav");
-//   var name = prompt("Who do you think?");
-//   document.querySelector("#winner").innerHTML = name + '😂';
-//
-// });
+const sessionID = (req.params.sessionID);
+Session.find({_id: sessionID}, function(err, foundSession){
+  if(err){
+    console.log(err);
+  }else{
 
 
 
+    res.render("game", {players: foundSession, votes: foundSession});
 
 
 
-      //
-      // const firstName = req.body.firstName;
-      // const lastName = req.body.lastName;
-      // const email = req.body.email;
-      //
-      // const data = {
-      //   members: [{
-      //
-      //     email_address: email,
-      //     status: "subscribed",
-      //     merge_fields:{
-      //       FNAME: firstName,
-      //       LNAME: lastName
-      //     }
-      //   }]
-      // };
-      //
-      // const jsonData = JSON.stringify(data);
-      // const url = "https://us10.api.mailchimp.com/3.0/lists/016eda49d9";
-      // const options = {
-      //   method: "POST",
-      //   auth: "caroline1:fe00616e0f3f25467141c4574b0e75d7-us10"
-      // }
-// const request = https.request(url, options, function(response){
+  }
+
+
+
+});
+
+// Session.findOne({__id: sessionID}, function(err, foundSession){};
 //
 //
-//   if(response.statusCode === 200){
-//     res.sendFile(__dirname + "/game.html");
-//   }
-//   else{
-//     res.sendFile(__dirname + "/failure.html")
-//   }
 //
-//   response.on("data", function(data){
-//     console.log(JSON.parse(data));
-//     console.log();
-//   })
-//
-// request.write(jsonData);
-// request.end();
+});
 
-
-// })
-//
-
-
-
-
-
-
-
-
-// Api Key
-// fe00616e0f3f25467141c4574b0e75d7-us10
-//unique
-// 016eda49d9
 
 app.listen(process.env.PORT || 3000, function(){
 

@@ -1,15 +1,15 @@
 <%- include("partials/header") %>
 
+<h1> Host your Party </h1>
 
-<h1> Ready to play? </h1>
-
-<form action="/enter" method="post">
+<form action="/host" method="post">
   <div class="d-flex justify-content-center">
 
   <div class="form-row">
     <div class="col">
-      <input type="text" class="form-control form-control-lg" name="player" placeholder="Player 1">
-      <input type="text" class="form-control form-control-lg" name="session" placeholder="Session ID">
+      <input type="text" class="form-control form-control-lg" name="partyName" placeholder="Party Name">
+      <input type="text" class="form-control form-control-lg" name="playerName" placeholder="Your Name" >
+
      </div>
     <div class="col-12">
       <button class="btn btn-primary btn-lg btn-block play" name="playButton" type="submit">Play</button>

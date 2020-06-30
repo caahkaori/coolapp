@@ -52,25 +52,27 @@
   </section>
 
   <!-- Title -->
-  <form action="/enter" method="get">
 
   <div class="first container-fluid">
 
       <div class="row">
         <div class="col-12">
           <h1>Host your Game Party from Anywhere.</h1>
-        </div>
+      </div>
           <div class="col-lg-6 col-md-6 col-sm-12">
+            <form action="/host" method="get">
             <img class="facetime" src="images/facetime2.jpeg" alt="facetime">
-            <button type="submit" onclick ="location.href='/signIn.html'" name="submitButton" class="btn btn-outline-dark btn-lg click-button">Host your Party</button>
+            <button type="submit" name="submitButton" class="btn btn-outline-dark btn-lg click-button">Host your Party</button>
           </div>
-
-          <div class="col-lg-6 col-md-6 col-sm-12">
-            <img class="facetime" src="images/facetime2.jpeg" alt="facetime">
-            <button type="submi" onclick ="location.href='/signIn.html'" class="btn btn-outline-dark btn-lg click-button">Join A Party</button>
-          </div>
-        </div>
         </form>
+          <div class="col-lg-6 col-md-6 col-sm-12">
+            <form action="/enter" method="get">
+
+            <img class="facetime" src="images/facetime2.jpeg" alt="facetime">
+            <button type="submit" class="btn btn-outline-dark btn-lg click-button">Join A Party</button>
+          </div>
+        </form>
+      </div>
 
 
 

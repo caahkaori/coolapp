@@ -1,3 +1,6 @@
+<%- include("partials/header") %>
+
+
 <% players.forEach(function(player){%>
     <h2> <%=player.name%> </h2>
       <p> Vote:<%=player.votes%> </p>
@@ -6,3 +9,4 @@
 <form action="/results" method="post">
   <button type="submit" name="button">Next</button>
 </form>
+<%- include("partials/footer") %>
