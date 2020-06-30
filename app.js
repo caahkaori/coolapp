@@ -12,7 +12,7 @@ const io = require('socket.io')(http);
 
 const app = express();
 
-mongoose.connect("mongodb+srv://admin_caroline:supernatural123@cluster0-qqvh0.mongodb.net/votes",{ useNewUrlParser: true });
+mongoose.connect("mongodb+srv://@cluster0-qqvh0.mongodb.net/votes",{ useNewUrlParser: true });
 
 const votesSchema = {
   name: String,
